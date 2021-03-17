@@ -363,6 +363,8 @@ button {
     padding: 15px;
     min-height: 50px;
     border-bottom: 1px solid rgb(235, 238, 240);
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modal .tweet-form {

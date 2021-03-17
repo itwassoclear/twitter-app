@@ -13,11 +13,12 @@ class FetchData {
 }
 
 class Twitter {
-  constructor({ listElem }) {
+  constructor({ listElem, modalElems }) {
     const fetchData = new FetchData();
     this.tweets = new Posts(); // все посты
     this.elements = {
       listElem: document.querySelector(listElem),
+      modal: modalElems,
     };
 
     fetchData
@@ -27,6 +28,8 @@ class Twitter {
         this.showAllPost();
       })
       .catch();
+
+    this.elements.modal.forEach(this.handlerModal, this);
   }
 
   renderPosts(tweets) {
@@ -79,7 +82,27 @@ class Twitter {
     this.renderPosts(this.tweets.posts);
   }
 
-  openModal() {}
+  handlerModal({ button, modal, overlay, close }) {
+    const buttonElem = document.querySelector(button);
+    const modalElem = document.querySelector(modal);
+    const overlayElem = document.querySelector(overlay);
+    const closeElem = document.querySelector(close);
+
+    const openModal = () => {
+      modalElem.style.display = "block";
+    };
+
+    const closeModal = (elem, event) => {
+      const target = event.target;
+      if (target === elem) {
+        modalElem.style.display = "none";
+      }
+    };
+
+    buttonElem.addEventListener("click", openModal);
+    closeElem.addEventListener("click", closeModal.bind(null, closeElem));
+    overlayElem.addEventListener("click", closeModal.bind(null, overlayElem));
+  }
 }
 
 class Posts {
@@ -133,8 +156,17 @@ class Post {
   };
 }
 
-const twitter = new Twitter({ listElem: ".tweet-list" });
-console.log(twitter);
+const twitter = new Twitter({
+  listElem: ".tweet-list",
+  modalElems: [
+    {
+      button: ".header__link_tweet",
+      modal: ".modal",
+      overlay: ".overlay",
+      close: ".modal-close__btn",
+    },
+  ],
+});
 
 // twitter.tweets.addPost({
 //   userName: "Маша",
