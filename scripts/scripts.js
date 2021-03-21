@@ -9,7 +9,7 @@ class FetchData {
     return res.json();
   };
 
-  getPost = () => this.getResource("db/database.json");
+  getPost = () => this.getResource("../db/database.json");
 }
 
 class Twitter {
@@ -70,7 +70,7 @@ class Twitter {
         <li>
           <article class="tweet">
             <div class="row">
-              <img class="avatar" src="images/${nickname}.jpg" alt="Аватар пользователя ${nickname}">
+              <img class="avatar" src="../images/${nickname}.jpg" alt="Аватар пользователя ${nickname}">
               <div class="tweet__wrapper">
                 <header class="tweet__header">
                   <h3 class="tweet-author">${userName}
