@@ -84,7 +84,7 @@ class Twitter {
                   ${
                     img
                       ? `<figure class="tweet-post__image">
-                    <img src="images/${img}.jpg" alt="иллюстрация из поста ${nickname}">
+                    <img src="images/${img}" alt="иллюстрация из поста ${nickname}">
                   </figure>`
                       : ""
                   }
