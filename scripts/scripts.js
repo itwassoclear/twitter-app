@@ -9,7 +9,7 @@ class FetchData {
     return res.json();
   };
 
-  getPost = () => this.getResource("db/database.json");
+  getPost = () => this.getResource("db/dataBase.json");
 }
 
 class Twitter {
